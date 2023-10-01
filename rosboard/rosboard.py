@@ -134,7 +134,7 @@ class ROSBoardNode(object):
             if rospy.__name__ == "rospy2":
                 topic_info = rospy._node.get_publishers_info_by_topic(topic_name=topic_name)
                 if len(topic_info):
-                    return topic_info[0].qos_profile
+                    #return topic_info[0].qos_profile
                     return QoSProfile(
                             depth=10,
                             reliability=topic_info[0].qos_profile.reliability,
