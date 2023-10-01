@@ -135,6 +135,13 @@ class ROSBoardNode(object):
                 topic_info = rospy._node.get_publishers_info_by_topic(topic_name=topic_name)
                 if len(topic_info):
                     return topic_info[0].qos_profile
+                    return QoSProfile(
+                            depth=10,
+                            reliability=topic_info[0].qos_profile.reliability,
+                            # reliability=QoSReliabilityPolicy.RELIABLE,
+                            durability=topic_info[0].qos_profile.durability,
+                            # durability=QoSDurabilityPolicy.TRANSIENT_LOCAL,
+                        )
                 else:
                     rospy.logwarn(f"No publishers available for topic {topic_name}. Returning sensor data QoS")
                     return QoSProfile(
